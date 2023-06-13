@@ -85,12 +85,16 @@ export class App extends Component {
 
     const name = form.elements.name.value;
     const number = form.elements.number.value;
-    this.setState({
-      contacts: [
-        ...this.state.contacts,
-        { key: nanoid(), name: name, number: number },
-      ],
-    });
+
+    if (this.state.contacts.map(el => el.name).includes(name))
+      alert(`${name} is already in contacts`);
+    else
+      this.setState({
+        contacts: [
+          ...this.state.contacts,
+          { key: nanoid(), name: name, number: number },
+        ],
+      });
     form.reset();
   };
 
