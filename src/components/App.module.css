@@ -12,3 +12,13 @@ button {
   font-size: 40px;
   color: #010101;
 }
+
+form {
+  align-items: start;
+  width: 500px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-style: solid;
+}
