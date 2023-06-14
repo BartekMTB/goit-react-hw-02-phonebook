@@ -85,11 +85,11 @@ export class App extends Component {
       contact => contact.key !== id
     );
 
-    /*  this.setState(prevState => {
+    this.setState(prevState => {
       return { ...prevState, contacts: [...filteredContacts] };
-    }) */
+    });
 
-    this.setState((this.state.contacts = [...filteredContacts]));
+    //this.setState((this.state.contacts = [...filteredContacts]));
   };
 
   handleChange = evt => {
