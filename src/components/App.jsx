@@ -40,7 +40,6 @@ const Filter = props => {
 };
 
 const Contact = ({ id, name, number, deleteFunc }) => {
-  console.log(id);
   return (
     <li>
       {name} {number}{' '}
