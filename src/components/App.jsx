@@ -39,10 +39,14 @@ const Filter = props => {
   );
 };
 
-const Contact = ({ name, number }) => {
+const Contact = ({ id, name, number, deleteFunc }) => {
+  console.log(id);
   return (
     <li>
-      {name} {number}
+      {name} {number}{' '}
+      <button type="button" onClick={() => deleteFunc(id)}>
+        remove
+      </button>
     </li>
   );
 };
@@ -51,7 +55,13 @@ const ContactList = props => {
   return (
     <ul>
       {props.contactFunc().map(el => (
-        <Contact key={el.key} name={el.name} number={el.number}></Contact>
+        <Contact
+          key={el.key}
+          id={el.key}
+          name={el.name}
+          number={el.number}
+          deleteFunc={props.deleteFunc}
+        ></Contact>
       ))}
     </ul>
   );
@@ -70,9 +80,22 @@ export class App extends Component {
     number: '',
   };
 
+  handleDelete = id => {
+    const filteredContacts = this.state.contacts.filter(
+      contact => contact.key !== id
+    );
+
+    /*  this.setState(prevState => {
+      return { ...prevState, contacts: [...filteredContacts] };
+    }) */
+
+    this.setState((this.state.contacts = [...filteredContacts]));
+  };
+
   handleChange = evt => {
     this.setState({ filter: evt.target.value });
   };
+
   filterItems = () => {
     return this.state.contacts.filter(el =>
       el.name.toLowerCase().includes(this.state.filter.toLowerCase())
@@ -105,7 +128,10 @@ export class App extends Component {
         <Form submitFunc={this.handleSubmit}></Form>
         <h2>Contacts</h2>
         <Filter filterFunc={this.handleChange}></Filter>
-        <ContactList contactFunc={this.filterItems}></ContactList>
+        <ContactList
+          contactFunc={this.filterItems}
+          deleteFunc={this.handleDelete}
+        ></ContactList>
       </div>
     );
   }
