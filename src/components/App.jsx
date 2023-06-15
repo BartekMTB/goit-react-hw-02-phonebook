@@ -104,8 +104,7 @@ export class App extends Component {
     const name = form.elements.name.value;
     const number = form.elements.number.value;
 
-    // if (this.state.contacts.map(el => el.name).includes(name))
-    if (this.state.contacts.includes({ name: name }))
+    if (this.state.contacts.map(el => el.name).includes(name))
       alert(`${name} is already in contacts`);
     else
       this.setState({
