@@ -75,8 +75,6 @@ export class App extends Component {
       { key: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   handleDelete = id => {
@@ -84,11 +82,9 @@ export class App extends Component {
       contact => contact.key !== id
     );
 
-    this.setState(prevState => {
-      return { ...prevState, contacts: [...filteredContacts] };
-    });
+    //this.setState(() => ({ contacts: [...filteredContacts] }));
 
-    //this.setState((this.state.contacts = [...filteredContacts]));
+    this.setState({ contacts: [...filteredContacts] });
   };
 
   handleChange = evt => {
@@ -117,6 +113,7 @@ export class App extends Component {
           { key: nanoid(), name: name, number: number },
         ],
       });
+    console.log(this.state.contacts);
     form.reset();
   };
 
